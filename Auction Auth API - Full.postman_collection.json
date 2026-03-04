@@ -1,0 +1,149 @@
+{
+  "info": {
+    "_postman_id": "e3ec98ef-9b7c-4e20-97e8-e662272a7952",
+    "name": "Auction Auth API - Full",
+    "description": "Postman collection đầy đủ cho các API xác thực người dùng hệ thống đấu giá",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "40459798"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"demo_user\",\n  \"password\": \"12345678\",\n  \"email\": \"demo@example.com\",\n  \"phone_number\": \"0912345678\",\n  \"first_name\": \"Demo\",\n  \"last_name\": \"Nguyen\",\n  \"gender\": \"male\",\n  \"dob\": \"1990-01-01\",\n  \"province\": \"Đà Nẵng\",\n  \"district\": \"Hải Châu\",\n  \"ward\": \"Thạch Thang\",\n  \"detailed_address\": \"123 Trần Phú\",\n  \"identity_number\": \"123456789\",\n  \"identity_issue_date\": \"2017-01-01\",\n  \"identity_issue_place\": \"Cục CA\",\n  \"bank_account_number\": \"123456789\",\n  \"bank_name\": \"ACB\",\n  \"bank_account_holder\": \"Nguyễn Văn A\",\n  \"account_type\": \"personal\",\n  \"role\": \"bidder\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/auth/register",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["auth", "register"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"demo_user\",\n  \"password\": \"12345678\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/auth/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["auth", "login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Profile",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/auth/profile",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["auth", "profile"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Logout",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/auth/logout",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["auth", "logout"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Forget Password - Gửi OTP",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"demo@example.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/auth/forget-password",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["auth", "forget-password"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Reset Password - Bằng OTP",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"demo@example.com\",\n  \"otp\": \"123456\",\n  \"newPassword\": \"newpass123\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/auth/reset-password",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["auth", "reset-password"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "access_token",
+      "value": "PASTE_YOUR_JWT_HERE"
+    }
+  ]
+}
