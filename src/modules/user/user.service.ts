@@ -21,6 +21,30 @@ export class UserService {
     private mailService: MailService,
   ) {}
 
+  async findAll(page: number = 1, limit: number = 20) {
+    const [users, total] = await this.userRepository.findAndCount({
+      skip: (page - 1) * limit,
+      take: limit,
+      order: { createdAt: 'DESC' },
+    });
+
+    return {
+      data: users,
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit),
+    };
+  }
+
+  async findById(id: number) {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) {
+      throw new NotFoundException('Người dùng không tồn tại');
+    }
+    return user;
+  }
+
   async verifyUserAccount(id: number, dto: VerifyUserDto) {
     this.logger.log(
       `Bắt đầu xử lý xác minh user ID=${id} với trạng thái ${dto.status}`,

@@ -27,6 +27,24 @@ export class AuctionBidService {
     private readonly participantRepo: Repository<AuctionSessionParticipant>,
   ) {}
 
+  async getBidsBySession(sessionId: number, page: number = 1, limit: number = 20) {
+    const [bids, total] = await this.bidRepo.findAndCount({
+      where: { session: { id: sessionId } },
+      skip: (page - 1) * limit,
+      take: limit,
+      order: { timestamp: 'DESC' },
+      relations: ['user'],
+    });
+
+    return {
+      data: bids,
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit),
+    };
+  }
+
   async submitBidManually(sessionId: number, userId: number, price: number) {
     // 1. Kiểm tra phiên đấu giá còn hoạt động
     const session = await this.sessionRepo.findOne({

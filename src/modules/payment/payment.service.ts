@@ -38,6 +38,24 @@ export class PaymentService {
     return `https://img.vietqr.io/image/${bank}-${account}-${template}.png?amount=${price}&addInfo=${addInfo}&accountName=${accountName}`;
   }
 
+  async findByUser(userId: number, page: number = 1, limit: number = 20) {
+    const [payments, total] = await this.paymentRepo.findAndCount({
+      where: { userId },
+      skip: (page - 1) * limit,
+      take: limit,
+      order: { timestamp: 'DESC' },
+      relations: ['session'],
+    });
+
+    return {
+      data: payments,
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit),
+    };
+  }
+
   async create(userId: number, dto: CreatePaymentDto) {
     const session = await this.sessionRepo.findOne({
       where: { id: dto.session_id },

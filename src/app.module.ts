@@ -13,6 +13,7 @@ import { AuctionDocumentModule } from './modules/auction-document/auction-docume
 import { PaymentModule } from './modules/payment/payment.module';
 import { AuctionBidModule } from './modules/auction-bid/auction-bid.module';
 import { AuctionSessionModule } from './modules/auction-session/auction-session.module';
+import { CategoryModule } from './modules/category/category.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { AuctionSessionModule } from './modules/auction-session/auction-session.
     configureDatabase(),
     configureMulter(),
     AuthModule,
+    CategoryModule,
     ImageModule,
     ImageRelationModule,
     UserModule,
