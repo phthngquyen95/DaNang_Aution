@@ -3,7 +3,7 @@ import { Payment } from '../src/modules/payment/entities/payment.entity';
 import { User } from '../src/modules/user/entities/user.entity';
 import { AuctionSession } from '../src/modules/auction-session/entities/auction-session.entity';
 import { encrypt } from '../src/utils/encryption';
-import { PaymentStatus, PaymentType } from 'common/constants/enums';
+import { PaymentStatus, PaymentType } from '../src/common/constants/enums';
 
 export async function seedPayments(dataSource: DataSource) {
   const repo = dataSource.getRepository(Payment);

@@ -71,6 +71,9 @@ export enum AuctionParticipantStatus {
   REFUNDED = 'refunded', // Đã hoàn tiền cọc
 }
 
+// Alias for backward compatibility
+export const ParticipantStatus = AuctionParticipantStatus;
+
 export enum AuctionSessionStatus {
   DRAFT = 'draft', // Người tổ chức khởi tạo
   PENDING = 'pending', // Đang chờ admin duyệt

@@ -5,6 +5,7 @@ import {
   Column,
   CreateDateColumn,
   ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { User } from '../../user/entities/user.entity';
 import { AuctionSession } from '../../auction-session/entities/auction-session.entity';
@@ -37,8 +38,10 @@ export class Payment {
   sessionId!: number;
 
   @ManyToOne(() => User, (user) => user.id)
+  @JoinColumn({ name: 'user_id' })
   user!: User;
 
   @ManyToOne(() => AuctionSession, (session) => session.id)
+  @JoinColumn({ name: 'session_id' })
   session!: AuctionSession;
 }

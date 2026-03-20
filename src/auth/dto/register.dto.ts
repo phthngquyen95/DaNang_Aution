@@ -8,6 +8,9 @@ import {
 } from 'class-validator';
 import { Gender, AccountType, UserRole } from '../../common/constants/enums';
 
+// Re-export for other modules
+export { UserRole } from '../../common/constants/enums';
+
 export class RegisterDto {
   @IsNotEmpty()
   @IsString()

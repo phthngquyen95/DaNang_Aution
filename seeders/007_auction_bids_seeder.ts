@@ -17,16 +17,18 @@ export async function seedAuctionBids(dataSource: DataSource) {
     return;
   }
 
-  const exists = await repo.findOneBy({
-    userId: user.id,
-    sessionId: session.id,
+  const exists = await repo.findOne({
+    where: {
+      user: { id: user.id },
+      session: { id: session.id },
+    },
   });
 
   if (!exists) {
     const bid = repo.create({
       price: 51000000,
-      userId: user.id,
-      sessionId: session.id,
+      user: user,
+      session: session,
     });
 
     await repo.save(bid);

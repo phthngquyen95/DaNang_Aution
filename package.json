@@ -24,7 +24,9 @@
     "migration:run": "typeorm-ts-node-commonjs migration:run -d ./ormconfig.ts",
     "migration:revert": "typeorm-ts-node-commonjs migration:revert -d ./ormconfig.ts",
     "migration:generate": "typeorm-ts-node-commonjs migration:generate -d ./ormconfig.ts",
-    "migration:show": "typeorm-ts-node-commonjs migration:show -d ./ormconfig.ts"
+    "migration:show": "typeorm-ts-node-commonjs migration:show -d ./ormconfig.ts",
+    "setup:db": "node setup-db.js",
+    "setup": "npm run setup:db && npm run migration:run && npm run seeder"
   },
   "dependencies": {
     "@nestjs-modules/mailer": "^2.0.2",
@@ -77,6 +79,7 @@
     "@types/passport-jwt": "^4.0.1",
     "@types/streamifier": "^0.1.2",
     "@types/supertest": "^6.0.2",
+    "axios": "^1.13.6",
     "bcrypt": "^6.0.0",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",

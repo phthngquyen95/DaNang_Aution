@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
 import {
-  AuctionDocumentStatus,
   AuctionType,
+  AuctionSessionStatus,
 } from '../src/common/constants/enums';
 import { AuctionSession } from '../src/modules/auction-session/entities/auction-session.entity';
 
@@ -16,8 +16,9 @@ export async function seedAuctionSessions(dataSource: DataSource) {
       sessionCode: sessionCode,
       title: 'Phiên đấu giá đầu tiên',
       description: 'Mô tả phiên đấu giá mẫu',
-      status: AuctionDocumentStatus.UPCOMING,
+      status: AuctionSessionStatus.DRAFT,
       type: AuctionType.PUBLIC,
+      createdBy: 1, // Assuming user with ID 1 exists
     });
 
     await repo.save(session);
